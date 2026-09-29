@@ -1,0 +1,108 @@
+programa {
+  funcao inicio() {
+    cadeia personagem, guilda
+    cadeia item[3] = {"Zweihander", "Cajado", "Adaga"}
+    inteiro dano[3] = {3, 1, 2}
+    inteiro alcance[3] = {2, 10, 1}
+    caracter claRe[3] = {'G', 'M', "L"}
+    caracter classe
+    real forca, destreza, inteligencia, vitalidade, hp, mp ,fp, spd, inicio
+    inteiro opcao, pedido, pontosmx
+    inteiro arma
+    logico persona 
+
+    pontosmx = 48
+
+
+    faca{
+      escreva("1 - Criar Char \n")
+      escreva("2 - Armas \n")
+      escreva("3 - Exibir Ficha \n")
+      escreva("4 - Exit \n")
+      leia(opcao)
+
+      se(opcao == 1){
+        persona = falso
+        limpa()
+        escreva("Nome do seu Char: ")
+        leia(personagem)
+        escreva("Selecione (G)uerreiro, (M)ago, (L)adrão: ")
+        leia(classe)
+        se((classe == "G" ou classe == "g")){
+          escreva("Selecionado: Guerreiro \n")
+            }senao se(classe == "M" ou classe == "m"){
+              escreva("Selecionado: Mago \n")
+                }senao se(classe == "L" ou classe == "l"){
+                  escreva("Selecionado: Ladrão \n")
+                  }senao{
+                    escreva("Classe invalida, Tente novamente \n")
+                   }
+        escreva("Nome da sua Guilda: ")
+          leia(guilda)
+
+          escreva("Pontos maximo: ", pontosmx, " Diga sua Força(faixa:3 a 18): ")
+            leia(forca)
+              escreva("Pontos maximo: ", pontosmx - forca, " Diga Sua Destreza(faixa:3 a 18): ")
+              leia(destreza)
+                  escreva("Pontos maximo: ", pontosmx - (forca + destreza), " Diga Sua Inteligencia(faixa:3 a 18): ")
+                  leia(inteligencia)
+                    escreva("Pontos maximo: ", pontosmx - (forca + destreza + inteligencia), " Diga sua Vitalidade(faixa:3 a 18)")
+                    leia(vitalidade)
+
+        
+
+      
+        se(forca < 3 ou forca > 18){
+        escreva("Numero de força excedido, tente novamente")
+        }senao se (destreza < 3 ou forca > 18){
+          escreva("Numero de destreza excedido, tente novamente")
+        }senao se (inteligencia < 3 ou forca > 18){
+          escreva("Numero de inteligencia excedido, tente novamente")
+        }senao se( vitalidade < 3 ou forca > 18){
+          escreva("Numero de Vitalidade excedido, tente novamente")
+        }senao{
+        }
+        persona = verdadeiro
+      }senao se(opcao == 2 e persona == verdadeiro){
+        
+        limpa()
+        escreva("Escolha uma das Armas selecionadas: \n")
+        escreva("|   | Item | Dano(d6) | Alcance(m) | Classe requerida | \n")
+        escreva("| 1 | ", item[0], "   |   ", dano[0], "   |   ", alcance[0], "   |   ", claRe[0], "   | \n")
+        escreva("| 2 | ", item[1], "       |   ", dano[1], "   |   ", alcance[1], "  |   ", claRe[1], "   | \n")
+        escreva("| 3 | ", item[2], "        |   ", dano[2], "   |   ", alcance[2], "   |   ", claRe[2], "   | \n")
+        leia(arma)
+      }senao se(opcao == 3 e persona == verdadeiro){
+
+        hp = (forca + vitalidade) / 4.0
+        mp = (inteligencia + vitalidade) / 4.0
+        fp = vitalidade
+        spd = (destreza + vitalidade) / 4.0
+        inicio = spd * 10.0
+
+        escreva("========================================\n")
+        escreva("-----------------FICHA------------------\n")
+        escreva("========================================\n")
+        escreva("Nome: ", personagem, " | ", "Guilda: ", guilda, " | ", "Classe: ", classe, " | ", "Arma: ", item[arma - 1 ], "\n")
+        escreva("========================================\n")
+        escreva("ATRIBUTOS BASE: \n")
+        escreva("Força: ", forca, " Destreza: ", destreza, " Inteligencia: ", inteligencia, "\n" )
+        escreva("========================================\n")
+        escreva("ATRIBUTOS DERIVADOS: \n")
+        escreva("Pontos de vida: ", hp, "\n")
+        escreva("Pontos de Magia: ", mp, "\n")
+        escreva("Limite de Fadiga: ", fp, "\n")
+        escreva("Velocidade base: ", spd, "\n")
+        escreva("Valor de Iniciativa: ", inicio, "\n")
+        escreva("========================================\n")
+        leia(" ")
+      }senao se(opcao == 4){
+        escreva("Mas ja (╥︣﹏᷅╥), Ate uma proxima  (•◡•) /")
+      }senao{
+        limpa()
+        escreva("Invalido, Tente novamente \n")
+      }
+    }enquanto(opcao != 4)
+
+  }
+}
